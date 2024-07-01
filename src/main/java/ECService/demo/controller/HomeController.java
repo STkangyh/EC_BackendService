@@ -1,12 +1,13 @@
-package controller;
+package ECService.demo.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class HelloController {
-    @GetMapping("hello")
+public class HomeController {
+    @GetMapping("/")
     public String hello() {
-        return "hello";
+        System.out.println("controller run");
+        return "index";
     }
 }
