@@ -1,0 +1,26 @@
+{{>components/header}}
+
+
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">이름</th>
+        <th scope="col">상태</th>
+        <th scope="col">지원시간</th>
+        +    </tr>
+    </thead>
+    <tbody>
+    <!-- Entity를 가져오기 -->
+    {{#applyList}}
+        <tr>
+            <th>{{id}}</th>
+            <td>{{name}}</td>
+            <td>{{state}}</td>
+            <td>{{createTime}}</td>
+        </tr>
+    {{/applyList}}
+    </tbody>
+</table>
+
+{{>components/footer}}

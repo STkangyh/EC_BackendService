@@ -6,8 +6,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class HomeController {
     @GetMapping("/")
-    public String hello() {
+    public String home() {
         System.out.println("controller run");
         return "index";
+    }
+
+    @GetMapping("/apply")
+    public String apply() {
+        return "apply/applyForm";
     }
 }
