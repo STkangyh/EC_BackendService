@@ -1,7 +1,6 @@
 package ECService.demo.entity;
 
 import jakarta.persistence.*;
-import org.w3c.dom.Text;
 
 import java.time.LocalDateTime;
 
@@ -28,10 +27,33 @@ public class Apply {
     @Column
     private LocalDateTime createTime;
 
+    //getter
+    public Long getId() {
+        return id;
+    }
+    public String getName() {
+        return name;
+    }
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+    public String getQuestion1() {
+        return question1;
+    }
+    public String getQuestion2() {
+        return question2;
+    }
+    public String getQuestion3() {
+        return question3;
+    }
     public String getState() {
         return state;
     }
+    public LocalDateTime getCreateTime() {
+        return createTime;
+    }
 
+    //setter
     public void setState(String state) {
         this.state = state;
     }

@@ -1,7 +1,7 @@
 package ECService.demo.controller;
 
 
-import ECService.demo.dto.applyForm;
+import ECService.demo.dto.ApplyForm;
 import ECService.demo.entity.Apply;
 import ECService.demo.repository.ApplyRepository;
 import ECService.demo.repository.ListInfoRepository;
@@ -27,7 +27,7 @@ public class ApplyController {
 
 
     @PostMapping("forms/apply")
-    public String applyForm(applyForm form) {
+    public String applyForm(ApplyForm form) {
         System.out.println("DTO: " + form.toString());
 
         //1. DTO를 Entity로 변환
@@ -79,11 +79,6 @@ public class ApplyController {
         return "redirect:/applies";
     }
 
-    @GetMapping("lookUP")
-    public String lookUp() {
-        return "apply/applyLookUp";
-    }
-
     @PostMapping("forms/lookUp")
     public String showResult(@RequestParam String phoneNumber, Model model) {
 
@@ -96,5 +91,4 @@ public class ApplyController {
         model.addAttribute("apply", applyEntity);
         return "apply/showResult";
     }
-
 }

@@ -2,7 +2,7 @@ package ECService.demo.dto;
 
 import ECService.demo.entity.Apply;
 
-public class applyForm {
+public class ApplyForm {
 
     private String name;
     private String studentId;
@@ -11,7 +11,7 @@ public class applyForm {
     private String question2;
     private String question3;
 
-    public applyForm(String name, String studentId, String phoneNumber, String question1, String question2, String question3) {
+    public ApplyForm(String name, String studentId, String phoneNumber, String question1, String question2, String question3) {
         this.name = name;
         this.studentId = studentId;
         this.phoneNumber = phoneNumber;
