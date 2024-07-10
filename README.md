@@ -12,12 +12,6 @@
 ![image](https://github.com/kimgt0128/EC_BackendService/assets/127713989/b48cd3d0-ca8c-4f4d-acb5-71ab097d2f8c)
 
 
-![image](https://github.com/kimgt0128/EC_BackendService/assets/127713989/e546d830-0a0f-4194-879e-b1d3b26bb563)
-
-![image](https://github.com/kimgt0128/EC_BackendService/assets/127713989/3bf6b830-676c-4dc0-97f2-b4fb4c168ba6)
-
-![image](https://github.com/kimgt0128/EC_BackendService/assets/127713989/d908ba09-75cd-4079-adb1-94146ce2c536)
-
 ![image](https://github.com/kimgt0128/EC_BackendService/assets/127713989/cbd0bc88-2522-47ba-a774-60381741eeda)
 
 
