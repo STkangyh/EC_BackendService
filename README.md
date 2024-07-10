@@ -9,8 +9,6 @@
 
 ![image](https://github.com/kimgt0128/EC_BackendService/assets/127713989/ec9dc798-0028-427f-b247-071eb6676859)
 
-![image](https://github.com/kimgt0128/EC_BackendService/assets/127713989/cb28fa6b-c0e7-4da3-8bff-26c2f9bebfeb)
-
 ![image](https://github.com/kimgt0128/EC_BackendService/assets/127713989/b48cd3d0-ca8c-4f4d-acb5-71ab097d2f8c)
 
 
