@@ -4,7 +4,8 @@
 
 ![image](https://github.com/kimgt0128/EC_BackendService/assets/127713989/5d1b24ed-8d68-4164-a90f-b2b8eb9d880b)
 
-![image](https://github.com/kimgt0128/EC_BackendService/assets/127713989/7c158bdd-71e6-47f4-a6a6-8cb2b0293547)
+![image](https://github.com/kimgt0128/EC_BackendService/assets/127713989/8e024a70-0b5c-4dba-ae29-53d75eeb2455)
+
 
 ![image](https://github.com/kimgt0128/EC_BackendService/assets/127713989/ec9dc798-0028-427f-b247-071eb6676859)
 
