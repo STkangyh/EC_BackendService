@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class PageController {
     @GetMapping("/")
     public String home() {
-        System.out.println("controller run");
         return "index";
     }
 
@@ -16,7 +15,7 @@ public class PageController {
         return "apply/applyForm";
     }
 
-    @GetMapping("lookUP")
+    @GetMapping("/lookUP")
     public String lookUp() {
         return "apply/applyLookUp";
     }
