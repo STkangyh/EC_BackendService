@@ -27,3 +27,8 @@
 
 ![image](https://github.com/kimgt0128/EC_BackendService/assets/127713989/95b3f1e2-f056-4488-b511-bc02d4341a76)
 
+![image](https://github.com/kimgt0128/EC_BackendService/assets/127713989/d24671e4-5e54-40cf-9c07-bad8459887a7)
+
+![image](https://github.com/kimgt0128/EC_BackendService/assets/127713989/ba5ce095-712b-476b-a37f-db2eebcc6439)
+
+
