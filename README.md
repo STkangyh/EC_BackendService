@@ -11,6 +11,10 @@
 
 ![image](https://github.com/kimgt0128/EC_BackendService/assets/127713989/b48cd3d0-ca8c-4f4d-acb5-71ab097d2f8c)
 
+![image](https://github.com/kimgt0128/EC_BackendService/assets/127713989/2620b8fd-7115-473a-b916-fa5c81721165)
+
+![image](https://github.com/kimgt0128/EC_BackendService/assets/127713989/e4af89fd-f878-407f-ab1a-e06e11e3acc6)
+
 
 ![image](https://github.com/kimgt0128/EC_BackendService/assets/127713989/cbd0bc88-2522-47ba-a774-60381741eeda)
 
