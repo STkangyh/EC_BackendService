@@ -1,5 +1,5 @@
 # EC_BackendService
-학술동아리 Endless Creacion의 백엔드 서비스 구축
+학술동아리 Endless Creacion 홈페이지의 회원 관리 및 지원하기 기능을 위한 백엔드 서비스 입니다.
 mustache를 이용한 테스트 페이지를 이용하여 구현했습니다.
 ![image](https://github.com/kimgt0128/EC_BackendService/assets/127713989/3c5738ca-7b84-48dc-915f-bc2e30d431d1)
 
@@ -39,4 +39,7 @@ mustache를 이용한 테스트 페이지를 이용하여 구현했습니다.
 ![image](https://github.com/kimgt0128/EC_BackendService/assets/127713989/ba5ce095-712b-476b-a37f-db2eebcc6439)
 
 
+ # 개선 사항
+ - 같은 전화 번호로 중복 지원시 전화번호로 조회에서 오류 발생(반환값 불일치)
+ - 전화 번호 형식, 이메일 형식 검사하기 기능 추가하기
 
