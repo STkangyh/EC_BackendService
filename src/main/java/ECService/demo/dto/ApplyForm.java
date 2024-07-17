@@ -9,8 +9,11 @@ import lombok.ToString;
 public class ApplyForm {
 
     private String name;
+    private String major;
     private String studentId;
+    private String birth;
     private String phoneNumber;
+    private String email;
     private String question1;
     private String question2;
     private String question3;
@@ -19,8 +22,11 @@ public class ApplyForm {
     public Apply toEntity() {
         return Apply.builder()
                 .name(name)
+                .major(major)
                 .studentId(studentId)
+                .birth(birth)
                 .phoneNumber(phoneNumber)
+                .email(email)
                 .question1(question1)
                 .question2(question2)
                 .question3(question3)

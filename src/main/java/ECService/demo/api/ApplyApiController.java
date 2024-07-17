@@ -4,10 +4,7 @@ import ECService.demo.dto.ApplyForm;
 import ECService.demo.entity.Apply;
 import ECService.demo.repository.ApplyRepository;
 import ECService.demo.repository.ListInfoRepository;
-import ECService.demo.repository.mapping.ListInfo;
 import ECService.demo.repository.mapping.ListInfoMapping;
-import jakarta.annotation.PostConstruct;
-import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
 
 @RestController //RestAPI 용 컨트롤러 - JSON을 반환
 @Slf4j // 각 메서드마다 로그 남기기 -> 이후 유지보수
@@ -31,7 +29,7 @@ public class ApplyApiController {
         List<ListInfoMapping> index = listInfoRepository.findAllBy();
         for(ListInfoMapping mapping : index) {
             String logMessage = String.format("ListInfoMapping: id=%d, name=%s, createTime=%s",
-                    mapping.getId(), mapping.getName(), mapping.getCreateTime());
+                    mapping.getId(), mapping.getName(), mapping.getState(), mapping.getPhoneNumber(), mapping.getCreateTime());
             log.info(logMessage);
         }
         return ResponseEntity.ok(index);
@@ -52,9 +50,14 @@ public class ApplyApiController {
         Apply savedEntity = applyRepository.save(applyEntity);
         return ResponseEntity.ok(savedEntity);
     }
-    @PostMapping("/api/showResult")
-    public ResponseEntity<Apply> showResult(@RequestParam String phoneNumber) {
-        Apply applyEntity = applyRepository.findByPhoneNumber(phoneNumber).orElseThrow(() -> new IllegalArgumentException("Invalid phone number"));
+
+    @PostMapping("/api/showResult")public ResponseEntity<Apply> showResult(@RequestParam(required = false) String phoneNumber) {
+        if (phoneNumber == null || phoneNumber.isEmpty()) {
+            throw new IllegalArgumentException("PhoneNumber is empty");
+        }
+
+        Apply applyEntity = applyRepository.findByPhoneNumber(phoneNumber)
+                .orElseThrow(() -> new NoSuchElementException("PhoneNumber not found"));
         log.info(applyEntity.toString());
         return ResponseEntity.ok(applyEntity);
     }
