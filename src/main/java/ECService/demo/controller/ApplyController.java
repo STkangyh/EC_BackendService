@@ -55,6 +55,24 @@ public class ApplyController {
         return "apply/showApply";
     }
 
+    //caddy에서 하위파일 지원 오류로 다시 만든 메서드
+    @GetMapping("/applies{id}")
+    public String showForm_copy(@PathVariable Long id, Model model) {
+        //URL로부터 id를 받아서
+        System.out.println("controller 실행 - id = " + id);
+        //1. id로 데이터를 가져오기
+        Apply applyEntity = applyRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid apply"));
+        //Optional<Apply> applyEntity = applyRepository.findById(id);
+        log.info(applyEntity.toString());
+        //2. 가져온 데이터를 model에 등록하기
+        model.addAttribute("apply", applyEntity);
+        //3. 보여줄 페이지를 설정하기
+        return "apply/showApply";
+    }
+
+
+
+
     @GetMapping("/applies")
     public String showApplyList(Model model) {
         //1. 모든 Apply를 가져온다.
@@ -95,4 +113,19 @@ public class ApplyController {
         model.addAttribute("apply", applyEntity);
         return "apply/showResult";
     }
+
+    @GetMapping("/deleteAll")
+    public String deleteAll(RedirectAttributes redirectAttributes) {
+        if (!applyRepository.isExist()) {
+            log.warn("applies is already empty");
+            redirectAttributes.addFlashAttribute("message", "이미 비어있습니다.");
+            return "redirect:/applies";
+        }
+        applyRepository.deleteAll();
+        applyRepository.resetAutoIncrement();
+        log.info("successfully deleted all applies");
+        redirectAttributes.addFlashAttribute("message", "성공적으로 삭제되었습니다.");
+        return "redirect:/applies";
+    }
+
 }
