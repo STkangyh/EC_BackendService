@@ -9,5 +9,7 @@ public interface ListInfoMapping {
 
     String getState();
 
+    String getPhoneNumber();
     LocalDateTime getCreateTime();
+
 }

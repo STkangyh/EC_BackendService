@@ -2,6 +2,7 @@ package ECService.demo.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.extern.apachecommons.CommonsLog;
 
 import java.time.LocalDateTime;
 
@@ -12,6 +13,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @ToString
+@Table(name = "APPLY")
 public class Apply {
     //ID -> 자동 증가하며 생성
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,9 +22,15 @@ public class Apply {
     @Column
     private String name;
     @Column
+    private String major;
+    @Column
     private String studentId;
     @Column
+    private String birth;
+    @Column
     private String phoneNumber;
+    @Column
+    private String email;
     @Column(columnDefinition = "Text", length = 320)
     private String question1;
     @Column(columnDefinition = "Text", length = 320)

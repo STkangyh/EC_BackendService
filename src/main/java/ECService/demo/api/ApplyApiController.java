@@ -4,10 +4,7 @@ import ECService.demo.dto.ApplyForm;
 import ECService.demo.entity.Apply;
 import ECService.demo.repository.ApplyRepository;
 import ECService.demo.repository.ListInfoRepository;
-import ECService.demo.repository.mapping.ListInfo;
 import ECService.demo.repository.mapping.ListInfoMapping;
-import jakarta.annotation.PostConstruct;
-import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
 
 @RestController //RestAPI 용 컨트롤러 - JSON을 반환
 @Slf4j // 각 메서드마다 로그 남기기 -> 이후 유지보수
@@ -29,18 +27,19 @@ public class ApplyApiController {
     @GetMapping("/api/applies")
     public ResponseEntity<List<ListInfoMapping>> index() {
         List<ListInfoMapping> index = listInfoRepository.findAllBy();
-        for(ListInfoMapping mapping : index) {
-            String logMessage = String.format("ListInfoMapping: id=%d, name=%s, createTime=%s",
-                    mapping.getId(), mapping.getName(), mapping.getCreateTime());
-            log.info(logMessage);
-        }
+//        for(ListInfoMapping mapping : index) {
+//            String logMessage = String.format("ListInfoMapping: id=%d, name=%s, createTime=%s",
+//                    mapping.getId(), mapping.getName(), mapping.getState(), mapping.getPhoneNumber(), mapping.getCreateTime());
+//            log.info(logMessage);
+//        }
+        log.info("Fetched all ListInfoMappings, total count: {}", index.size());
         return ResponseEntity.ok(index);
     }
 
     @GetMapping("/api/applies/{id}")
     public ResponseEntity< Apply> showForm(@PathVariable Long id) {
         Apply formEntity = applyRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid apply"));
-        log.info(formEntity.toString());
+        log.info("Fetched apply entity with ID: {}", id);
         return ResponseEntity.ok(formEntity);
     }
 
@@ -48,14 +47,21 @@ public class ApplyApiController {
     @PostMapping("/api/applyForm")
     public ResponseEntity<Apply> applyForm(@RequestBody ApplyForm applyDto) {
         Apply applyEntity = applyDto.toEntity();
-        log.info(applyEntity.toString());
         Apply savedEntity = applyRepository.save(applyEntity);
+        log.info("Saved Apply entity: {}", savedEntity);
         return ResponseEntity.ok(savedEntity);
     }
+
     @PostMapping("/api/showResult")
-    public ResponseEntity<Apply> showResult(@RequestParam String phoneNumber) {
-        Apply applyEntity = applyRepository.findByPhoneNumber(phoneNumber).orElseThrow(() -> new IllegalArgumentException("Invalid phone number"));
-        log.info(applyEntity.toString());
+    public ResponseEntity<Apply> showResult(@RequestParam(required = false) String phoneNumber) {
+        if (phoneNumber == null || phoneNumber.isEmpty()) {
+            log.error("PhoneNumber is empty");
+            throw new IllegalArgumentException("PhoneNumber is empty");
+        }
+
+        Apply applyEntity = applyRepository.findByPhoneNumber(phoneNumber)
+                .orElseThrow(() -> new NoSuchElementException("PhoneNumber not found"));
+        log.info("Found application for phone number {}: {}", phoneNumber, applyEntity);
         return ResponseEntity.ok(applyEntity);
     }
 
@@ -69,7 +75,7 @@ public class ApplyApiController {
         Apply applyEntity = applyRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid Id"));
         applyEntity.setState(state);
-        log.info(applyEntity.toString());
+        log.info("change state {}: {}", state, applyEntity);
 
         Apply updateEntity = applyRepository.save(applyEntity);
         return ResponseEntity.ok(updateEntity);
@@ -80,7 +86,7 @@ public class ApplyApiController {
                               @RequestParam String state) {
         Apply applyEntity = applyRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid apply"));
         applyEntity.setState(state);
-        log.info(applyEntity.toString());
+        log.info("change state {}: {}", state, applyEntity);
         Apply updateEntity = applyRepository.save(applyEntity);
         return ResponseEntity.ok(updateEntity);
     }
@@ -89,10 +95,12 @@ public class ApplyApiController {
     @DeleteMapping("/api/deleteAll")
     public ResponseEntity<String> deleteAll() {
         if(!applyRepository.isExist()) {
+            log.warn("applies is already empty");
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("이미 비어있습니다.");
         }
         applyRepository.deleteAll();
         applyRepository.resetAutoIncrement();
+        log.info("successfully deleted all applies");
         return ResponseEntity.ok().build();
     }
 }
